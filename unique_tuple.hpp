@@ -20,7 +20,7 @@ struct impl<V> : leaf<V> { };
 template <>
 struct impl<> {};
 
-template <typename A, typename V, typename ...R>
+template <typename A, typename ...R>
 struct unique_tuple_impl;
 
 template <typename ...A, typename V, typename ...R>
@@ -47,6 +47,12 @@ template <typename V>
 struct unique_tuple_impl<impl<>, V>
 {
 	using type = std::tuple<V>;
+};
+
+template <>
+struct unique_tuple_impl<impl<>>
+{
+	using type = std::tuple<>;
 };
 
 template <typename ...Values>
